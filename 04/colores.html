@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>4 Colores</title>
+</head>
+<body>
+  <h2>clic -> negro</h2>
+
+  <div id="azul" style="width:200px;height:200px;background:blue;display:inline-block;margin:10px;cursor:pointer;"></div>
+  <div id="rojo" style="width:200px;height:200px;background:red;display:inline-block;margin:10px;cursor:pointer;"></div>
+  <div id="verde" style="width:200px;height:200px;background:green;display:inline-block;margin:10px;cursor:pointer;"></div>
+  <div id="amarillo" style="width:200px;height:200px;background:yellow;display:inline-block;margin:10px;cursor:pointer;"></div>
+
+  <hr>
+
+  <h3>cambian con teclas a, s, d</h3>
+  <div id="key" style="width:200px;height:200px;background:white;border:2px solid black;margin:10px;"></div>
+
+  <h3>se agregan con teclas q, w, e</h3>
+  <div id="created-container" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;"></div>
+
+  <script>
+    const ids = ['azul', 'rojo', 'verde', 'amarillo'];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('click', () => {
+        el.style.backgroundColor = 'black';
+      });
+    });
+
+  
+    let currentColor = null; 
+
+    const keyDiv = document.getElementById('key');
+    const createdContainer = document.getElementById('created-container');
+
+    document.addEventListener('keydown', function (event) {
+      const k = event.key.toLowerCase();
+
+    
+      if (k === 'a') {
+        currentColor = 'pink';      // rosado
+        keyDiv.style.backgroundColor = currentColor;
+      } else if (k === 's') {
+        currentColor = 'orange';    // naranjo
+        keyDiv.style.backgroundColor = currentColor;
+      } else if (k === 'd') {
+        currentColor = 'lightblue'; // celeste
+        keyDiv.style.backgroundColor = currentColor;
+      }
+
+
+      else if (k === 'q' || k === 'w' || k === 'e') {
+        let colorToCreate = 'white';
+        if (k === 'q') colorToCreate = 'purple'; // morado
+        if (k === 'w') colorToCreate = 'gray';   // gris
+        if (k === 'e') colorToCreate = 'brown';  // café
+
+        const newDiv = document.createElement('div');
+    
+        newDiv.style.width = '200px';
+        newDiv.style.height = '200px';
+        newDiv.style.background = colorToCreate;
+        newDiv.style.border = '1px solid #000';
+        newDiv.style.boxSizing = 'border-box';
+        newDiv.style.display = 'inline-block';
+        newDiv.style.margin = '5px';
+
+        createdContainer.appendChild(newDiv);
+      }
+    });
+  </script>
+</body>
+</html>
